@@ -13,7 +13,7 @@ class Tables extends Component {
         this.props.getEmployeeCode(row);
     };
     render() {
-        const {listOfEmployees, selectedEmployeeCode, dataEmployee} = this.props;
+        const {listOfEmployees, selectedEmployeeCode} = this.props;
         return (
             <React.Fragment>
                     <Box display="flex" justifyContent="space-between" bgcolor="background.paper">
@@ -35,7 +35,6 @@ class Tables extends Component {
 const mapStateToProps = ({list}) => {
     return {
         listOfEmployees: list.listOfEmployees,
-        dataEmployees: list.dataEmployees,
         selectedEmployeeCode: list.selectedEmployeeCode
     }
 };
