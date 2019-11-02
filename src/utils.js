@@ -1,20 +1,16 @@
-module.exports = [
-    {
-        surName: 'Казанцев',
-        name: 'Павел',
-        patronymic: 'Отчество',
-        dateOfBirth: '29.05.1998',
-        personNumber: 1,
-        position: 'junior developer',
-        subdivision: 'Сбербанк'
-    },
-    {
-        surName: 'Казанцев',
-        name: 'Павел',
-        patronymic: 'Отчество',
-        dateOfBirth: '29.05.1998',
-        personNumber: 2,
-        position: 'junior developer',
-        subdivision: 'Сбербанк'
-    }
-];
+import { Record, List } from 'immutable';
+
+export const EmployeeRecord = Record({
+    surName: '',
+    name: '',
+    patronymic: '',
+    dateOfBirth: '',
+    personNumber: '',
+    position: '',
+    subdivision: ''
+});
+
+export const StateRecord = Record({
+    employees: List([new EmployeeRecord()])
+});
+

@@ -22,9 +22,7 @@ const useStyles = makeStyles({
 
 
 
-export default function TablePreview ({dataEmployees, selectedCode}) {
-    console.log(dataEmployees);
-    console.log(selectedCode);
+export default function TablePreview ({selectedCode}) {
     const classes = useStyles();
     function renderTableHead() {
         return tableHead.map((tableItem) => {
@@ -42,15 +40,17 @@ export default function TablePreview ({dataEmployees, selectedCode}) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {   dataEmployees === undefined ? null :
-                        dataEmployees.length > 1 && dataEmployees.map(employe => (
                         <TableRow
-                            key={employe.personNumber}
+                            key={selectedCode.personNumber}
                         >
-                            <TableCell align="center">{employe.name}</TableCell>
-                            <TableCell align="center">{employe.surName}</TableCell>
+                            <TableCell align="center">{selectedCode.name}</TableCell>
+                            <TableCell align="center">{selectedCode.surName}</TableCell>
+                            <TableCell align="center">{selectedCode.patronymic}</TableCell>
+                            <TableCell align="center">{selectedCode.dateOfBirth}</TableCell>
+                            <TableCell align="center">{selectedCode.personNumber}</TableCell>
+                            <TableCell align="center">{selectedCode.position}</TableCell>
+                            <TableCell align="center">{selectedCode.subdivision}</TableCell>
                         </TableRow>
-                    ))}
                 </TableBody>
             </Table>
         </Paper>

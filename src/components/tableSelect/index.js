@@ -50,7 +50,7 @@ export default function TableSelect (props) {
                         <TableRow
                             key={employe.personNumber}
                             onClick={() => {
-                                props.handleClick(employe.personNumber)
+                                props.handleClick(employe)
                             }}
                             >
                             <TableCell align="center">{employe.name}</TableCell>

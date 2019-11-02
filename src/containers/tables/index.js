@@ -3,15 +3,14 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import Box from '@material-ui/core/Box';
 import {withRouter} from 'react-router-dom'
-import TablePreview from '../tablePreview';
-import TableSelect from '../tableSelect';
-import {getEmployeeCode, getDataEmployee} from '../../redux/reducers/list/actions';
+import TablePreview from '../../components/tablePreview';
+import TableSelect from '../../components/tableSelect';
+import {getEmployeeCode} from '../../redux/reducers/list/actions';
 
 
 class Tables extends Component {
-    handleClick = (code) => {
-        this.props.getEmployeeCode(code);
-        this.props.getDataEmployee(code);
+    handleClick = (row) => {
+        this.props.getEmployeeCode(row);
     };
     render() {
         const {listOfEmployees, selectedEmployeeCode, dataEmployee} = this.props;
@@ -23,10 +22,11 @@ class Tables extends Component {
                             listOfEmployees={listOfEmployees}
                             handleClick={this.handleClick}
                         />
-                        <TablePreview
-                            dataEmployee={dataEmployee}
-                            selectedCode={selectedEmployeeCode}
-                        />
+                        { selectedEmployeeCode ?
+                            <TablePreview
+                                selectedCode={selectedEmployeeCode}
+                            /> : null
+                        }
                     </Box>
             </React.Fragment>
         );
@@ -41,8 +41,7 @@ const mapStateToProps = ({list}) => {
 };
 function mapDispatchToProps (dispatch) {
     return {
-        getDataEmployee: (code) => dispatch(getDataEmployee(code)),
-        getEmployeeCode: (code) => dispatch(getEmployeeCode(code))
+        getEmployeeCode: (row) => dispatch(getEmployeeCode(row))
     }
 }
 

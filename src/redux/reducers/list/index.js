@@ -1,20 +1,26 @@
 import {
-    DATA_EMPLOYEE,
     LIST_EMPLOYEE,
     SELECTED_EMPLOYEE_CODE
 } from "./actionTypes";
-import employees from '../../../utils';
 export const initialState = {
     listOfEmployees: [
         {
             personNumber: 1,
             surName: 'Казанцев',
-            name: 'Павел'
+            name: 'Павел',
+            patronymic: 'Андреевич',
+            dateOfBirth: '29/05/1998',
+            position: 'junior developer',
+            subdivision: 'Сбербанк'
         },
         {
             personNumber: 2,
-            surName: 'Kazantsev',
-            name: 'Pavel'
+            surName: 'Иванов',
+            name: 'Иван',
+            patronymic: 'Отчество',
+            dateOfBirth: '23/05/1996',
+            position: 'junior developer',
+            subdivision: 'Сбербанк'
         }
     ],
     dataEmployee: [],
@@ -26,11 +32,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 selectedEmployeeCode: action.payload
-            };
-        case DATA_EMPLOYEE:
-            return {
-                ...state,
-                dataEmployee: employees[action.payload]
             };
         case LIST_EMPLOYEE:
             return {

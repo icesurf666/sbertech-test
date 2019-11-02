@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-// import {Link} from "react-router-dom";
+// // import {Link} from "react-router-dom";
 import Container from '@material-ui/core/Container';
 
 
@@ -81,11 +81,11 @@ const useStyles = makeStyles(theme => ({
 const sections = [
     {
         title: 'Список сотрудников',
-        link: 'listofemployees'
+        link: '/'
     },
     {
         title: 'Добавить запись',
-        link: 'add'
+        link: '/formAdd'
     },
     {
         title: 'Настройки',
