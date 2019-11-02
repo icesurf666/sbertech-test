@@ -5,26 +5,28 @@ import Box from '@material-ui/core/Box';
 import {withRouter} from 'react-router-dom'
 import TablePreview from '../../components/tablePreview';
 import TableSelect from '../../components/tableSelect';
-import {getEmployeeCode} from '../../redux/reducers/list/actions';
+import {getEmployeeRow} from '../../redux/reducers/list/actions';
 
 
 class Tables extends Component {
     handleClick = (row) => {
-        this.props.getEmployeeCode(row);
+        this.props.getEmployeeRow(row);
     };
     render() {
-        const {listOfEmployees, selectedEmployeeCode, dataEmployee} = this.props;
+        const {selectedEmployeeRow, employees} = this.props;
+
+        console.log(selectedEmployeeRow, employees);
         return (
             <React.Fragment>
                     <Box display="flex" justifyContent="space-between" bgcolor="background.paper">
                         <TableSelect
-                            selectedCode={selectedEmployeeCode}
-                            listOfEmployees={listOfEmployees}
+                            selectedRow={selectedEmployeeRow}
+                            employees={employees}
                             handleClick={this.handleClick}
                         />
-                        { selectedEmployeeCode ?
+                        { selectedEmployeeRow ?
                             <TablePreview
-                                selectedCode={selectedEmployeeCode}
+                                selectedRow={selectedEmployeeRow}
                             /> : null
                         }
                     </Box>
@@ -34,14 +36,14 @@ class Tables extends Component {
 }
 const mapStateToProps = ({list}) => {
     return {
-        listOfEmployees: list.listOfEmployees,
+        employees: list.employees,
         dataEmployees: list.dataEmployees,
-        selectedEmployeeCode: list.selectedEmployeeCode
+        selectedEmployeeRow: list.selectedEmployeeRow
     }
 };
 function mapDispatchToProps (dispatch) {
     return {
-        getEmployeeCode: (row) => dispatch(getEmployeeCode(row))
+        getEmployeeRow: (row) => dispatch(getEmployeeRow(row))
     }
 }
 

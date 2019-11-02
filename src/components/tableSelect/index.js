@@ -46,15 +46,15 @@ export default function TableSelect (props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.listOfEmployees.map(employe => (
+                    {props.employees.map(employe => (
                         <TableRow
-                            key={employe.personNumber}
+                            key={employe.get('personNumber')}
                             onClick={() => {
                                 props.handleClick(employe)
                             }}
                             >
-                            <TableCell align="center">{employe.name}</TableCell>
-                            <TableCell align="center">{employe.surName}</TableCell>
+                            <TableCell align="center">{employe.get('name')}</TableCell>
+                            <TableCell align="center">{employe.get('surName')}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

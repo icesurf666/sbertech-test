@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 
 
-export default function TablePreview ({selectedCode}) {
+export default function TablePreview ({selectedRow}) {
     const classes = useStyles();
     function renderTableHead() {
         return tableHead.map((tableItem) => {
@@ -41,15 +41,15 @@ export default function TablePreview ({selectedCode}) {
                 </TableHead>
                 <TableBody>
                         <TableRow
-                            key={selectedCode.personNumber}
+                            key={selectedRow.personNumber}
                         >
-                            <TableCell align="center">{selectedCode.name}</TableCell>
-                            <TableCell align="center">{selectedCode.surName}</TableCell>
-                            <TableCell align="center">{selectedCode.patronymic}</TableCell>
-                            <TableCell align="center">{selectedCode.dateOfBirth}</TableCell>
-                            <TableCell align="center">{selectedCode.personNumber}</TableCell>
-                            <TableCell align="center">{selectedCode.position}</TableCell>
-                            <TableCell align="center">{selectedCode.subdivision}</TableCell>
+                            <TableCell align="center">{selectedRow.name}</TableCell>
+                            <TableCell align="center">{selectedRow.surName}</TableCell>
+                            <TableCell align="center">{selectedRow.patronymic}</TableCell>
+                            <TableCell align="center">{selectedRow.dateOfBirth}</TableCell>
+                            <TableCell align="center">{selectedRow.personNumber}</TableCell>
+                            <TableCell align="center">{selectedRow.position}</TableCell>
+                            <TableCell align="center">{selectedRow.subdivision}</TableCell>
                         </TableRow>
                 </TableBody>
             </Table>
