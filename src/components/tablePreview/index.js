@@ -23,6 +23,7 @@ const useStyles = makeStyles({
 
 
 export default function TablePreview ({selectedCode}) {
+    console.log(selectedCode);
     const classes = useStyles();
     function renderTableHead() {
         return tableHead.map((tableItem) => {

@@ -3,6 +3,9 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import DatePicker from '../UI/datePicker';
 import "react-datepicker/dist/react-datepicker.css";
 import {withRouter} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import { FormikTextField, FormikSelectField } from 'formik-material-fields';
 
 const positions = [
     {
@@ -44,7 +47,7 @@ const subdivisions = [
     }
 ]
 
-const FormAdd = (props) => (
+const FormAdd = () => (
     <div>
         <Formik
             initialValues={{
@@ -58,15 +61,18 @@ const FormAdd = (props) => (
 
 
             }}
-            // onSubmit={(values, { setSubmitting }) => {
-            //     setTimeout(() => {
-            //         alert(JSON.stringify(values, null, 2));
-            //         setSubmitting(false);
-            //     }, 500);
-            // }}
-            onSubmit={(values) => {
-                console.log(values)
+            onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                }, 500);
             }}
+        
+            // onSubmit = {(values, { setSubmitting }) => {
+            //     props.handleSub(values);
+            //     setSubmitting(false);
+            //   }
+            // }
         >
             {props => {
                 const {
@@ -82,48 +88,56 @@ const FormAdd = (props) => (
                     setFieldValue
                 } = props;
                 return (
-                    <form onSubmit={handleSubmit}>
-                        <DatePicker
-                            name="date"
-                            value={values.date}
-                            onChange={setFieldValue}
-                        />
-                        <Field type="text" placeholder="Фамилия" name="surName" />
-                        <Field type="text" placeholder="Имя" name="name" />
-                        <ErrorMessage name="name" component="div" />
-                        <Field type="text" placeholder="Отчество" name="patronymic" />
-                        <Field type="number" placeholder="Табельный номер" name="personNumber" />
-                        <select
-                            name="position"
-                            value={values.position}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        >
-                            {positions.map(({id, value, label}) => (
-                                <option key={id} value={value} label={label}></option>
-                            ))}
-                         </select>
-                         <select
-                            name="subdivision"
-                            value={values.subdivision}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        >
-                            {subdivisions.map(({id, value, label}) => (
-                                <option key={id} value={value} label={label}></option>
-                            ))}
-                         </select>
-                        <button
-                            type="button"
-                            className="outline"
-                            onClick={handleReset}
-                            disabled={!dirty || isSubmitting}
-                        >
-                            Reset
-                        </button>
-                        <button type="submit" disabled={isSubmitting}>
-                            Submit
-                        </button>
+                    <form onSubmit={handleSubmit} margin="normal">
+                        <Grid container direction="column">
+                            <DatePicker
+                                name="date"
+                                value={values.date}
+                                onChange={setFieldValue}
+                            />
+                            <FormikTextField type="text" placeholder="Фамилия" name="surName" margin="normal" />
+                            <FormikTextField type="text" placeholder="Имя" name="name" margin="normal" />
+                            <FormikTextField type="text" placeholder="Отчество" name="patronymic" margin="normal"/>
+                            <FormikTextField type="number" placeholder="Табельный номер" name="personNumber" margin="normal" />
+                            <FormikSelectField
+                                name="position"
+                                margin="normal"
+                                value={values.position}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label={positions[0].label}
+                                options={positions}
+                            >
+                            
+                            </FormikSelectField>
+                            <FormikSelectField
+                                name="subdivision"
+                                margin="normal"
+                                value={values.subdivision}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label={subdivisions[0].label}
+                                options={subdivisions}
+                            >
+                                
+                            </FormikSelectField>
+                            <Button
+                                type="button"
+                                margin="normal"
+                                className="outline"
+                                onClick={handleReset}
+                                disabled={!dirty || isSubmitting}
+                            >
+                                Reset
+                            </Button>
+                            <Button 
+                                type="submit"
+                                margin="normal"
+                                disabled={isSubmitting}
+                                >
+                                Submit
+                            </Button>
+                        </Grid>
                     </form>
                 );
             }}
@@ -131,4 +145,4 @@ const FormAdd = (props) => (
     </div>
 );
 
-export default withRouter(FormAdd);
+export default(FormAdd);

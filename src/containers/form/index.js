@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-
+import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-
+import {compose} from 'redux';
+import Container from '@material-ui/core/Container';
 import FormAdd from '../../components/formAdd'
 import {addEmployee} from '../../redux/reducers/create/actions';
 
@@ -14,7 +15,9 @@ class FormCont extends Component {
         const {arr} = this.props;
         return (
             <React.Fragment>
-                <FormAdd arr={arr} handleSub={this.handleSub} />
+                <Container maxWidth="sm">
+                    <FormAdd arr={arr} handleSub={this.handleSub} />
+                </Container>
             </React.Fragment>
         );
     }
@@ -32,6 +35,6 @@ function mapDispatchToProps (dispatch) {
 
 // export default compose(
 //     withRouter,
-//     connect(mapStateToProps)(Tables)
+//     connect(mapStateToProps, mapDispatchToProps)(FormCont)
 // );
 export default connect(mapStateToProps, mapDispatchToProps)(FormCont);

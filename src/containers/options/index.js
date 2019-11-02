@@ -3,18 +3,17 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import Box from '@material-ui/core/Box';
 import {withRouter} from 'react-router-dom'
-import TablePreview from '../../components/tablePreview';
+import EmployeeOptions from '../../components/employeeOptions';
 import TableSelect from '../../components/tableSelect';
 import {getEmployeeCode} from '../../redux/reducers/list/actions';
 import Container from '@material-ui/core/Container';
 
-
-class Tables extends Component {
+class Options extends Component {
     handleClick = (row) => {
         this.props.getEmployeeCode(row);
     };
     render() {
-        const {listOfEmployees, selectedEmployeeCode, dataEmployee} = this.props;
+        const {listOfEmployees, selectedEmployeeCode} = this.props;
         return (
             <React.Fragment>
                 <Container maxWidth="lg">
@@ -25,12 +24,12 @@ class Tables extends Component {
                             handleClick={this.handleClick}
                         />
                         { selectedEmployeeCode ?
-                            <TablePreview
+                            <EmployeeOptions 
                                 selectedCode={selectedEmployeeCode}
                             /> : null
                         }
                     </Box>
-                    </Container>
+                </Container>
             </React.Fragment>
         );
     }
@@ -48,8 +47,4 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-// export default compose(
-//     withRouter,
-//     connect(mapStateToProps)(Tables)
-// );
-export default connect(mapStateToProps, mapDispatchToProps)(Tables);
+export default connect(mapStateToProps, mapDispatchToProps)(Options);

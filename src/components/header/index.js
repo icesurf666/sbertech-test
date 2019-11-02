@@ -89,7 +89,7 @@ const sections = [
     },
     {
         title: 'Настройки',
-        link: 'options'
+        link: '/options'
     }
 ];
 
