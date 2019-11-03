@@ -2,7 +2,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { AppBar, Toolbar } from '@material-ui/core';
-import {Route, withRouter, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {TablesPage} from '../TablesPage';
 import FormCont from '../../containers/form';
 import Options from '../../containers/options';

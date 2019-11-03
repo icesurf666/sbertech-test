@@ -1,7 +1,9 @@
 import {
     LIST_EMPLOYEE,
     SELECTED_EMPLOYEE_CODE,
-    ADD_EMPLOYEE
+    ADD_EMPLOYEE,
+    REMOVE_EMPLOYEE,
+    EDIT_EMPLOYEE
 } from "./actionTypes";
 import listOfEmployees from '../../../utils';
 export const initialState = {
@@ -44,6 +46,14 @@ export default (state = initialState, action) => {
             return {
                 listOfEmployees: [...state.listOfEmployees, action.payload]
             };
+        case REMOVE_EMPLOYEE: 
+            return {
+                listOfEmployees: [...state.listOfEmployees].filter(newList => newList.personNumber !== action.payload)
+            }
+        case EDIT_EMPLOYEE: 
+            return {
+                listOfEmployees: [...state.listOfEmployees].filter(newList => newList.personNumber === action.payload)
+            }
         default:
             return state
     }

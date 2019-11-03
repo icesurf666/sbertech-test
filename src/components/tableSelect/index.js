@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 const mapStateToProps = ({list}) => {
     return {
         listOfEmployees: list.listOfEmployees,
-        // dataEmployees: list.dataEmployees,
         selectedEmployeeCode: list.selectedEmployeeCode
     }
 };

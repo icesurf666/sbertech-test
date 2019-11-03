@@ -1,8 +1,6 @@
 import React from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
-import DatePicker from '../UI/datePicker';
+import { Formik } from 'formik';
 import "react-datepicker/dist/react-datepicker.css";
-import {withRouter} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { FormikTextField, FormikSelectField } from 'formik-material-fields';
@@ -78,8 +76,6 @@ const FormAdd = (props) => (
             {props => {
                 const {
                     values,
-                    touched,
-                    errors,
                     dirty,
                     isSubmitting,
                     handleChange,
@@ -104,7 +100,6 @@ const FormAdd = (props) => (
                                     name="dateOfBirth"
                                     margin="normal"
                                     id="date-picker-inline"
-                                    label="Введите дату рождения"
                                     value={values.dateOfBirth}
                                     onChange={handleDateChange}
                                     KeyboardButtonProps={{

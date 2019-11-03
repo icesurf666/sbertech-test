@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
-import {compose} from "redux";
 import {connect} from "react-redux";
 import {Paper, Grid} from '@material-ui/core';
-import {withRouter} from 'react-router-dom';
 import EmployeeOptions from '../../components/employeeOptions';
 import TableSelect from '../../components/tableSelect';
-import {getEmployeeCode} from '../../redux/reducers/list/actions';
+import {getEmployeeCode, removeEmployee, editEmployee} from '../../redux/reducers/list/actions';
 
 
 class Options extends Component {
     handleClick = (row) => {
         this.props.getEmployeeCode(row);
     };
+    handleRemove = (id) => {
+        this.props.removeEmployee(id);
+    }
+    handleEdit = (newData) => {
+        this.props.editEmployee(newData);
+    }
     render() {
         const {listOfEmployees, selectedEmployeeCode} = this.props;
         return (
@@ -31,6 +35,9 @@ class Options extends Component {
                         { selectedEmployeeCode ?
                             <EmployeeOptions 
                                 selectedCode={selectedEmployeeCode}
+                                listOfEmployees={listOfEmployees}
+                                handleRemove={this.handleRemove}
+                                handleEdit={this.handleEdit}
                             /> : null
                         }
                         </Paper>
@@ -49,7 +56,9 @@ const mapStateToProps = ({list}) => {
 };
 function mapDispatchToProps (dispatch) {
     return {
-        getEmployeeCode: (row) => dispatch(getEmployeeCode(row))
+        getEmployeeCode: (row) => dispatch(getEmployeeCode(row)),
+        removeEmployee: (id) => dispatch(removeEmployee(id)),
+        editEmployee: (newData) => dispatch(editEmployee(newData))
     }
 }
 

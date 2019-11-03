@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import {compose} from 'redux';
 import Container from '@material-ui/core/Container';
 import FormAdd from '../../components/formAdd'
-import {addEmployee} from '../../redux/reducers/create/actions';
+import {addEmployee} from '../../redux/reducers/list/actions';
 
 
 class FormCont extends Component {

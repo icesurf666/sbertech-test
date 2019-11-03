@@ -1,9 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import {MenuItem, Menu, IconButton} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 import {Link as RouteLink} from "react-router-dom";
-
 
 export default function MenuApp() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,9 +16,12 @@ export default function MenuApp() {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      {/* <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         Меню
-      </Button>
+      </Button> */}
+      <IconButton edge="start" onClick={handleClick} color="inherit" aria-label="menu">
+        <MenuIcon />
+      </IconButton>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}

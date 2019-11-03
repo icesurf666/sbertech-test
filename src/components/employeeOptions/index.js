@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
+import {Input, Button} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -14,20 +14,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function EmployeeOptions({selectedCode}) {
+export default function EmployeeOptions({selectedCode, handleRemove, handleEdit}) {
     const classes = useStyles();
     const handleChange = event => {
         console.log(event.target.value)
     };
-//   function renderControls() {
-//     return selectedCode.map((tableItem) => {
-//         return (
-//             <TableCell key={tableItem} align="center">{tableItem}</TableCell>
-//         )
-//     })
-// }
   return (
-
     <div className={classes.container}>
         <FormControl className={classes.formControl}>
             <Input id="component-simple" margin="normal" value={selectedCode.name} onChange={handleChange} />
@@ -50,6 +42,9 @@ export default function EmployeeOptions({selectedCode}) {
         <FormControl className={classes.formControl}>
             <Input id="component-simple" margin="normal" value={selectedCode.subdivision} onChange={handleChange} />
       </FormControl>
+      <Button onClick={() => handleRemove(selectedCode.personNumber)} color="secondary" className={classes.button}>
+        Удалить
+      </Button>
     </div>
   );
 }

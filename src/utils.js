@@ -1,6 +1,6 @@
 module.exports = [
     {
-        personNumber: 1,
+        personNumber: 0,
         surName: 'Казанцев',
         name: 'Павел',
         patronymic: 'Андреевич',
@@ -9,7 +9,7 @@ module.exports = [
         subdivision: 'Сбербанк'
     },
     {
-        personNumber: 2,
+        personNumber: 1,
         surName: 'Иванов',
         name: 'Иван',
         patronymic: 'Отчество',
