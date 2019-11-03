@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
-import Box from '@material-ui/core/Box';
+import {Paper, Grid} from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
 import EmployeeOptions from '../../components/employeeOptions';
 import TableSelect from '../../components/tableSelect';
 import {getEmployeeCode} from '../../redux/reducers/list/actions';
-import Container from '@material-ui/core/Container';
+
 
 class Options extends Component {
     handleClick = (row) => {
@@ -16,20 +16,26 @@ class Options extends Component {
         const {listOfEmployees, selectedEmployeeCode} = this.props;
         return (
             <React.Fragment>
-                <Container maxWidth="lg">
-                    <Box display="flex" justifyContent="space-between" bgcolor="background.paper">
-                        <TableSelect
-                            selectedCode={selectedEmployeeCode}
-                            listOfEmployees={listOfEmployees}
-                            handleClick={this.handleClick}
-                        />
+                <Grid container direction="row" spacing={3} style={{marginTop: '20px'}}>
+                    <Grid item md={3} >
+                        <Paper>
+                            <TableSelect
+                                selectedCode={selectedEmployeeCode}
+                                listOfEmployees={listOfEmployees}
+                                handleClick={this.handleClick}
+                            />
+                        </Paper>
+                    </Grid>
+                    <Grid item md={8}>
+                        <Paper>
                         { selectedEmployeeCode ?
                             <EmployeeOptions 
                                 selectedCode={selectedEmployeeCode}
                             /> : null
                         }
-                    </Box>
-                </Container>
+                        </Paper>
+                    </Grid>
+                </Grid>
             </React.Fragment>
         );
     }

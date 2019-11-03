@@ -16,7 +16,7 @@ class FormCont extends Component {
         return (
             <React.Fragment>
                 <Container maxWidth="sm">
-                    <FormAdd arr={arr} handleSub={this.handleSub} />
+                    <FormAdd arr={arr} handleSub={this.handleSub}  />
                 </Container>
             </React.Fragment>
         );

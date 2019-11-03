@@ -6,19 +6,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {connect} from 'react-redux';
+import {getEmployeeCode} from '../../redux/reducers/list/actions';
 
-// const selectEmployees = [
-//     {
-//         personNumber: 1,
-//         surName: 'Kazantsev',
-//         name: 'Pavel'
-//     }
-// ];
 const tableHead = ['Имя', 'Фамилия'];
 
 const useStyles = makeStyles({
     root: {
-        width: '20%',
+        width: '100%',
         overflowX: 'auto',
     },
     table: {
@@ -27,8 +22,19 @@ const useStyles = makeStyles({
 });
 
 
-
-export default function TableSelect (props) {
+const mapStateToProps = ({list}) => {
+    return {
+        listOfEmployees: list.listOfEmployees,
+        // dataEmployees: list.dataEmployees,
+        selectedEmployeeCode: list.selectedEmployeeCode
+    }
+};
+function mapDispatchToProps (dispatch) {
+    return {
+        getEmployeeCode: (row) => dispatch(getEmployeeCode(row))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(function TableSelect (props) {
     const classes = useStyles();
     function renderTableHead() {
         return tableHead.map((tableItem) => {
@@ -50,7 +56,7 @@ export default function TableSelect (props) {
                         <TableRow
                             key={employe.personNumber}
                             onClick={() => {
-                                props.handleClick(employe)
+                                props.getEmployeeCode(employe)
                             }}
                             >
                             <TableCell align="center">{employe.name}</TableCell>
@@ -62,5 +68,6 @@ export default function TableSelect (props) {
         </Paper>
     );
 }
+)
 
 

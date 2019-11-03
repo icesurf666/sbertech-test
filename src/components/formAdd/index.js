@@ -6,6 +6,9 @@ import {withRouter} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { FormikTextField, FormikSelectField } from 'formik-material-fields';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
 
 const positions = [
     {
@@ -85,14 +88,35 @@ const FormAdd = (props) => (
                     handleReset,
                     setFieldValue
                 } = props;
+
+                const handleDateChange = (value) => {
+                    setFieldValue("dateOfBirth", value.toISOString());
+                  };
+                
                 return (
-                    <form onSubmit={handleSubmit} margin="normal">
+                    <form onSubmit={handleSubmit} margin="normal" style={{marginTop: '20px'}}>
                         <Grid container direction="column">
-                            <DatePicker
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="MM/dd/yyyy"
+                                    name="dateOfBirth"
+                                    margin="normal"
+                                    id="date-picker-inline"
+                                    label="Введите дату рождения"
+                                    value={values.dateOfBirth}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                         </MuiPickersUtilsProvider>
+                            {/* <DatePicker
                                 name="dateOfBirth"
                                 value={values.dateOfBirth}
                                 onChange={setFieldValue}
-                            />
+                            /> */}
                             <FormikTextField type="text" placeholder="Фамилия" name="surName" margin="normal" />
                             <FormikTextField type="text" placeholder="Имя" name="name" margin="normal" />
                             <FormikTextField type="text" placeholder="Отчество" name="patronymic" margin="normal"/>
