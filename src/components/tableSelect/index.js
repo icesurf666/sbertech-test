@@ -51,7 +51,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function TableSelect
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.listOfEmployees.map(employe => (
+                    {props.listOfEmployees ? props.listOfEmployees.map(employe => (
                         <TableRow
                             key={employe.personNumber}
                             onClick={() => {
@@ -61,7 +61,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function TableSelect
                             <TableCell align="center">{employe.name}</TableCell>
                             <TableCell align="center">{employe.surName}</TableCell>
                         </TableRow>
-                    ))}
+                    )) : null}
                 </TableBody>
             </Table>
         </Paper>

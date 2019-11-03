@@ -5,33 +5,42 @@ import {
     REMOVE_EMPLOYEE,
     EDIT_EMPLOYEE
 } from "./actionTypes";
-import listOfEmployees from '../../../utils';
-export const initialState = {
-    // listOfEmployees: [
-    //     {
-    //         personNumber: 1,
-    //         surName: 'Казанцев',
-    //         name: 'Павел',
-    //         patronymic: 'Андреевич',
-    //         dateOfBirth: '29/05/1998',
-    //         position: 'junior developer',
-    //         subdivision: 'Сбербанк'
-    //     },
-    //     {
-    //         personNumber: 2,
-    //         surName: 'Иванов',
-    //         name: 'Иван',
-    //         patronymic: 'Отчество',
-    //         dateOfBirth: '23/05/1996',
-    //         position: 'junior developer',
-    //         subdivision: 'Сбербанк'
-    //     }
-    // ],
-    listOfEmployees,
-    dataEmployee: [],
-    selectedEmployeeCode: null
-};
-export default (state = initialState, action) => {
+// import listOfEmployees from '../../../utils';
+import {load} from 'redux-localstorage-simple';
+
+let LIST = load({ namespace: 'list' });
+if( !LIST || !LIST.state || !LIST.state.length) {
+    LIST = {
+        listOfEmployees: [],
+        selectedEmployeeCode: null
+    }
+}
+
+// export const initialState = {
+//     // listOfEmployees: [
+//     //     {
+//     //         personNumber: 1,
+//     //         surName: 'Казанцев',
+//     //         name: 'Павел',
+//     //         patronymic: 'Андреевич',
+//     //         dateOfBirth: '29/05/1998',
+//     //         position: 'junior developer',
+//     //         subdivision: 'Сбербанк'
+//     //     },
+//     //     {
+//     //         personNumber: 2,
+//     //         surName: 'Иванов',
+//     //         name: 'Иван',
+//     //         patronymic: 'Отчество',
+//     //         dateOfBirth: '23/05/1996',
+//     //         position: 'junior developer',
+//     //         subdivision: 'Сбербанк'
+//     //     }
+//     // ],
+//     listOfEmployees: [],
+//     selectedEmployeeCode: null
+// };
+export default (state = LIST, action) => {
     switch (action.type) {
         case SELECTED_EMPLOYEE_CODE:
             return {

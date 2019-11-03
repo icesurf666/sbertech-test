@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {BrowserRouter} from 'react-router-dom';
 import {createStore, compose, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {App} from './components/NewApp';
 import rootReducer from './redux/reducers/rootReducer';
-
+import {save} from 'redux-localstorage-simple'; 
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -20,7 +19,7 @@ const composeEnhancers =
 const store = createStore(
     rootReducer,
     composeEnhancers(
-        applyMiddleware(thunk)
+        applyMiddleware(save({ namespace: 'listEmpl'}))
     )
 );
 const app = (
