@@ -52,7 +52,7 @@ export default (state = initialState, action) => {
             }
         case EDIT_EMPLOYEE: 
             return {
-                listOfEmployees: [...state.listOfEmployees].filter(newList => newList.personNumber === action.payload)
+                listOfEmployees: [...state.listOfEmployees].map((newList) => newList.personNumber === action.payload.personNumber ? {...newList, ...action.payload} : newList) 
             }
         default:
             return state

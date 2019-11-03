@@ -8,10 +8,10 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 
 
-const positions = [
+export const positions = [
     {
         id: 'dz',
-        value: '',
+        value: 'Должность',
         label: 'Должность'
     },
     {   
@@ -30,7 +30,7 @@ const positions = [
         label: 'Консультант'
     }
 ]
-const subdivisions = [
+export const subdivisions = [
     {
         id: 'pd',
         value: 'Подразделение',
@@ -152,7 +152,7 @@ const FormAdd = (props) => (
                                 margin="normal"
                                 disabled={isSubmitting}
                                 >
-                                Сохранить
+                                Сохранить и вернуться 
                             </Button>
                         </Grid>
                     </form>

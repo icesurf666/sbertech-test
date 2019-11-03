@@ -5,7 +5,7 @@ module.exports = [
         name: 'Павел',
         patronymic: 'Андреевич',
         dateOfBirth: '1998-05-29T17:00:00.000Z',
-        position: 'junior developer',
+        position: 'frontend',
         subdivision: 'Сбербанк'
     },
     {
@@ -14,7 +14,7 @@ module.exports = [
         name: 'Иван',
         patronymic: 'Отчество',
         dateOfBirth: '1996-10-28T17:00:00.000Z',
-        position: 'junior developer',
+        position: 'backend',
         subdivision: 'Сбербанк'
     }
 ]

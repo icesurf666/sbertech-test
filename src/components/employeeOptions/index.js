@@ -1,7 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import {Input, Button} from '@material-ui/core';
+import {Button} from '@material-ui/core';
+import { Formik } from 'formik';
+import "react-datepicker/dist/react-datepicker.css";
+import Grid from '@material-ui/core/Grid';
+import { FormikTextField, FormikSelectField } from 'formik-material-fields';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import {subdivisions, positions} from '../formAdd'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -15,36 +21,110 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function EmployeeOptions({selectedCode, handleRemove, handleEdit}) {
-    const classes = useStyles();
-    const handleChange = event => {
-        console.log(event.target.value)
-    };
+  const classes = useStyles();
   return (
     <div className={classes.container}>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.name} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.surName} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.patronymic} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.dateOfBirth} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.personNumber} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.position} onChange={handleChange} />
-        </FormControl>
-        <FormControl className={classes.formControl}>
-            <Input id="component-simple" margin="normal" value={selectedCode.subdivision} onChange={handleChange} />
-      </FormControl>
-      <Button onClick={() => handleRemove(selectedCode.personNumber)} color="secondary" className={classes.button}>
-        Удалить
-      </Button>
+      <Formik
+            initialValues={{
+                name: selectedCode.name,
+                surName: selectedCode.surName,
+                patronymic: selectedCode.patronymic,
+                dateOfBirth: selectedCode.dateOfBirth,
+                personNumber: selectedCode.personNumber,
+                position: selectedCode.position,
+                subdivision: selectedCode.subdivision
+            }}
+        
+            onSubmit = {(values, { setSubmitting }) => {
+                handleEdit(values);
+                setSubmitting(false);
+              }
+            }
+        >
+            {props => {
+                const {
+                    values,
+                    dirty,
+                    isSubmitting,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    handleReset,
+                    setFieldValue
+                } = props;
+
+                const handleDateChange = (value) => {
+                    setFieldValue("dateOfBirth", value.toISOString());
+                  };
+                
+                return (
+                    <form onSubmit={handleSubmit} margin="normal" style={{marginTop: '20px'}}>
+                        <Grid container direction="column">
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="MM/dd/yyyy"
+                                    name="dateOfBirth"
+                                    margin="normal"
+                                    id="date-picker-inline"
+                                    value={values.dateOfBirth}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                         </MuiPickersUtilsProvider>
+                            <FormikTextField type="text" placeholder="Фамилия" name="surName" margin="normal" />
+                            <FormikTextField type="text" placeholder="Имя" name="name" margin="normal" />
+                            <FormikTextField type="text" placeholder="Отчество" name="patronymic" margin="normal"/>
+                            <FormikTextField type="number" placeholder="Табельный номер" name="personNumber" margin="normal" />
+                            <FormikSelectField
+                                name="position"
+                                margin="normal"
+                                value={values.position}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label={positions[0].label}
+                                options={positions}
+                            >
+                            
+                            </FormikSelectField>
+                            <FormikSelectField
+                                name="subdivision"
+                                margin="normal"
+                                value={values.subdivision}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label={subdivisions[0].label}
+                                options={subdivisions}
+                            >
+                                
+                            </FormikSelectField>
+                            <Button
+                                type="button"
+                                margin="normal"
+                                className="outline"
+                                onClick={handleReset}
+                                disabled={!dirty || isSubmitting}
+                            >
+                                Очистить
+                            </Button>
+                            <Button 
+                                type="submit"
+                                margin="normal"
+                                disabled={isSubmitting}
+                                >
+                                Сохранить и закрыть
+                            </Button>
+                            <Button onClick={() => handleRemove(selectedCode.personNumber)} color="secondary" className={classes.button}>
+                              Удалить
+                            </Button>
+                        </Grid>
+                    </form>
+                );
+            }}
+        </Formik>
     </div>
   );
 }
