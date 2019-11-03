@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
 import Box from '@material-ui/core/Box';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 import EmployeeOptions from '../../components/employeeOptions';
 import TableSelect from '../../components/tableSelect';
 import {getEmployeeCode} from '../../redux/reducers/list/actions';

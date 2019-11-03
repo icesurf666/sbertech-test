@@ -47,32 +47,30 @@ const subdivisions = [
     }
 ]
 
-const FormAdd = () => (
+const FormAdd = (props) => (
     <div>
         <Formik
             initialValues={{
                 name: '',
                 surName: '',
                 patronymic: '',
-                date: "",
+                dateOfBirth: '',
                 personNumber: '',
                 position: '',
                 subdivision: ''
-
-
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 500);
-            }}
+            // onSubmit={(values, { setSubmitting }) => {
+            //     setTimeout(() => {
+            //         alert(JSON.stringify(values, null, 2));
+            //         setSubmitting(false);
+            //     }, 500);
+            // }}
         
-            // onSubmit = {(values, { setSubmitting }) => {
-            //     props.handleSub(values);
-            //     setSubmitting(false);
-            //   }
-            // }
+            onSubmit = {(values, { setSubmitting }) => {
+                props.handleSub(values);
+                setSubmitting(false);
+              }
+            }
         >
             {props => {
                 const {
@@ -91,8 +89,8 @@ const FormAdd = () => (
                     <form onSubmit={handleSubmit} margin="normal">
                         <Grid container direction="column">
                             <DatePicker
-                                name="date"
-                                value={values.date}
+                                name="dateOfBirth"
+                                value={values.dateOfBirth}
                                 onChange={setFieldValue}
                             />
                             <FormikTextField type="text" placeholder="Фамилия" name="surName" margin="normal" />
@@ -128,14 +126,14 @@ const FormAdd = () => (
                                 onClick={handleReset}
                                 disabled={!dirty || isSubmitting}
                             >
-                                Reset
+                                Очистить
                             </Button>
                             <Button 
                                 type="submit"
                                 margin="normal"
                                 disabled={isSubmitting}
                                 >
-                                Submit
+                                Сохранить
                             </Button>
                         </Grid>
                     </form>

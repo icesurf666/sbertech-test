@@ -1,9 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-// // import {Link} from "react-router-dom";
+import {
+    Link as RouteLink
+} from "react-router-dom";
 import Container from '@material-ui/core/Container';
 
 
@@ -78,14 +82,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const sections = [
-    {
+const sections = [{
         title: 'Список сотрудников',
         link: '/'
     },
     {
         title: 'Добавить запись',
-        link: '/formAdd'
+        link: '/add'
     },
     {
         title: 'Настройки',
@@ -95,25 +98,41 @@ const sections = [
 
 export default function Header() {
     const classes = useStyles();
-    return (
-        <React.Fragment>
-            <CssBaseline/>
-            <Container maxWidth="lg">
-                <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-                    {sections.map(section => (
-                        <Link
-                            color="inherit"
-                            noWrap
-                            key={section}
-                            variant="body2"
-                            href={section.link}
-                            className={classes.toolbarLink}
-                        >
-                            {section.title}
-                        </Link>
-                    ))}
-                </Toolbar>
-            </Container>
-        </React.Fragment>
+    return ( <
+        React.Fragment >
+        <
+        CssBaseline / >
+        <
+        Container maxWidth = "lg" >
+        <
+        Toolbar component = "nav"
+        variant = "dense"
+        className = {
+            classes.toolbarSecondary
+        } > {
+            sections.map(section => ( <
+                Link component = {
+                    RouteLink
+                }
+                color = "inherit"
+                noWrap key = {
+                    section
+                }
+                variant = "body2"
+                to = {
+                    section.link
+                }
+                className = {
+                    classes.toolbarLink
+                } >
+                {
+                    section.title
+                } <
+                /Link>
+            ))
+        } <
+        /Toolbar> <
+        /Container> <
+        /React.Fragment>
     );
 }

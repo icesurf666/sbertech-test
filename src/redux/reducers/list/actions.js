@@ -1,4 +1,4 @@
-import {SELECTED_EMPLOYEE_CODE} from './actionTypes'
+import {SELECTED_EMPLOYEE_CODE, ADD_EMPLOYEE} from './actionTypes'
 
 export function getEmployeeCode(row) {
     return {
@@ -6,4 +6,12 @@ export function getEmployeeCode(row) {
         payload: row
     }
 }
+
+export function addEmployee(data) {
+    return {
+        type: ADD_EMPLOYEE,
+        payload: data
+    }
+}
+
 

@@ -12,7 +12,7 @@ class App extends Component {
                 <Route path="/tables" component={Tables}/>
                 <Route path="/" exact component={Tables}/>
                 <Route path="/options" component={Options}/>
-                <Route path="/formAdd" exact component={FormCont}/>
+                <Route path="/add" exact component={FormCont}/>
             </Switch>
         );
         return (

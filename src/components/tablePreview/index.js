@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {format, parseISO} from 'date-fns';
 
 const tableHead = ['Фамилия', 'Имя', 'Отчество', 'Дата рождения',
 'Табельный номер', 'Должность', 'Подразделение'];
@@ -47,7 +48,7 @@ export default function TablePreview ({selectedCode}) {
                             <TableCell align="center">{selectedCode.name}</TableCell>
                             <TableCell align="center">{selectedCode.surName}</TableCell>
                             <TableCell align="center">{selectedCode.patronymic}</TableCell>
-                            <TableCell align="center">{selectedCode.dateOfBirth}</TableCell>
+                            <TableCell align="center">{format(parseISO(selectedCode.dateOfBirth), 'yyyy-MM-dd')}</TableCell>
                             <TableCell align="center">{selectedCode.personNumber}</TableCell>
                             <TableCell align="center">{selectedCode.position}</TableCell>
                             <TableCell align="center">{selectedCode.subdivision}</TableCell>

@@ -22,9 +22,9 @@ class FormCont extends Component {
         );
     }
 }
-const mapStateToProps = ({create}) => {
+const mapStateToProps = ({list}) => {
     return {
-        arr: create.arr
+        arr: list.arr
     }
 };
 function mapDispatchToProps (dispatch) {

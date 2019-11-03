@@ -1,15 +1,13 @@
 import {ADD_EMPLOYEE} from './actionTypes';
 import listOfEmployees from '../../../utils';
 export const initialState = {
-    listOfEmployees,
-    arr: []
+    listOfEmployees
 }
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_EMPLOYEE:
             return {
-                ...state,
-                arr: state.arr.concat(action.payload)
+                listOfEmployees: [...state.listOfEmployees, action.payload]
             };
         default:
             return state 

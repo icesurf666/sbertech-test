@@ -1,6 +1,7 @@
 import {
     LIST_EMPLOYEE,
-    SELECTED_EMPLOYEE_CODE
+    SELECTED_EMPLOYEE_CODE,
+    ADD_EMPLOYEE
 } from "./actionTypes";
 import listOfEmployees from '../../../utils';
 export const initialState = {
@@ -38,6 +39,10 @@ export default (state = initialState, action) => {
         case LIST_EMPLOYEE:
             return {
                 ...state
+            };
+        case ADD_EMPLOYEE:
+            return {
+                listOfEmployees: [...state.listOfEmployees, action.payload]
             };
         default:
             return state
