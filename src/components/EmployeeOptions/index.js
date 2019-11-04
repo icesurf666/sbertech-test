@@ -1,13 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Button} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import { Formik } from 'formik';
-import "react-datepicker/dist/react-datepicker.css";
-import Grid from '@material-ui/core/Grid';
 import { FormikTextField, FormikSelectField } from 'formik-material-fields';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import {subdivisions, positions} from '../formAdd'
+import {subdivisions, positions} from '../FormAdd'
 
 const useStyles = makeStyles(theme => ({
   container: {

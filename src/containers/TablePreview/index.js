@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import {Paper, FormControl, Input} from '@material-ui/core';
 import {connect} from 'react-redux';
 import {format, parseISO} from 'date-fns';
-import FormControl from '@material-ui/core/FormControl';
-import {Input} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -31,7 +29,7 @@ export default connect(mapStateToProps, null)(function TablePreview ({selectedEm
                 { selectedEmployeeCode ?
                 <div className={classes.container}>
                     <FormControl className={classes.formControl}>
-                    <Input id="component-simple" margin="normal" value={selectedEmployeeCode.name} readOnly={true} />
+                        <Input id="component-simple" margin="normal" value={selectedEmployeeCode.name} readOnly={true} />
                     </FormControl>
                     <FormControl className={classes.formControl}>
                         <Input id="component-simple" margin="normal" value={selectedEmployeeCode.surName} readOnly={true}  />

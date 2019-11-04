@@ -1,6 +1,6 @@
 import React from 'react';
-import TableSelect from '../tableSelect';
-import TablePreview from '../tablePreview';
+import TableSelect from '../../containers/TableSelect';
+import TablePreview from '../../containers/TablePreview';
 import {Paper, Grid} from '@material-ui/core';
 
 export const TablesPage = () => {

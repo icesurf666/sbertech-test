@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Paper, Grid} from '@material-ui/core';
-import EmployeeOptions from '../../components/employeeOptions';
-import TableSelect from '../../components/tableSelect';
+import EmployeeOptions from '../../components/EmployeeOptions';
+import TableSelect from '../TableSelect';
 import {getEmployeeCode, removeEmployee, editEmployee} from '../../redux/reducers/list/actions';
 
 

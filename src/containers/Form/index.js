@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Container from '@material-ui/core/Container';
-import FormAdd from '../../components/formAdd'
+import FormAdd from '../../components/FormAdd'
 import {addEmployee} from '../../redux/reducers/list/actions';
 
 
